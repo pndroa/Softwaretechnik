@@ -1,14 +1,11 @@
-import Login from "@/components/Login"
-import DashBoard from "@/components/DashBoard"
-import Link from "next/link"
-import { CardMedia } from "@mui/material"
+import Messages from "@/components/msg/Messages"
 
+
+//home is main 
 export default function Home() {
-  const name = "jey"
+  
+  //Messages is called class
+  return <Messages/>
 
-  return (
-    <div>
-      <Link href="/settings">Employee table</Link>
-    </div>
-  )
+  
 }
