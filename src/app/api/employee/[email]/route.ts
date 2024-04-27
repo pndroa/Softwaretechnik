@@ -4,13 +4,13 @@ import prisma from "../../../../../prisma"
 
 export const GET = async (
   _: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { email: string } }
 ) => {
   try {
     await connectToDatabase()
     const data = await prisma.user.findMany({
       where: {
-        id: params.id,
+        email: params.email,
       },
     })
     return NextResponse.json(data)
