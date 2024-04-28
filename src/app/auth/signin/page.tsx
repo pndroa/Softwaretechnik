@@ -18,8 +18,6 @@ const SignIn = () => {
     setRes(res)
   }
 
-  console.log(res)
-
   if (res?.ok) {
     router.push("/dashboard")
     router.refresh()

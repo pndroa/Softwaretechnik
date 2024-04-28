@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { UserProps } from "@/module/databaseConfig"
 import Header from "@/components/Header/Header"
-import Workday from "@/components/TimetableComponent"
 
-const Timetable = () => {
+const EmployeeTimetable = () => {
   const [session, setSession] = useState<Session>()
   const [user, setUser] = useState<UserProps>()
   const router = useRouter()
@@ -15,14 +14,15 @@ const Timetable = () => {
   useEffect(() => {
     const handleSession = async () => {
       const session = await getSession()
+
       if (session) {
         setSession(session)
-        await fetch(`/api/employee/${session?.user?.email}`)
+        await fetch(`/api/employee`)
           .then((res) => {
             return res.json()
           })
           .then((data) => {
-            setUser(data[0])
+            setUser(data)
           })
       } else {
         router.push("/auth/signin")
@@ -33,10 +33,10 @@ const Timetable = () => {
 
   return (
     <div>
-      <div style={{ paddingTop: "5rem" }}>Timetable of {user?.name}</div>
-      <Workday />
+      <Header />
+      <div>Timetable of Employee Eric Freeman</div>
     </div>
   )
 }
 
-export default Timetable
+export default EmployeeTimetable

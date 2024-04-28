@@ -2,12 +2,11 @@
 import { Session } from "next-auth"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { UserProps } from "@/module/databaseConfig"
 import Header from "@/components/Header/Header"
-import Workday from "@/components/TimetableComponent"
 
-const Timetable = () => {
+const Settings = () => {
   const [session, setSession] = useState<Session>()
   const [user, setUser] = useState<UserProps>()
   const router = useRouter()
@@ -15,6 +14,7 @@ const Timetable = () => {
   useEffect(() => {
     const handleSession = async () => {
       const session = await getSession()
+
       if (session) {
         setSession(session)
         await fetch(`/api/employee/${session?.user?.email}`)
@@ -33,10 +33,10 @@ const Timetable = () => {
 
   return (
     <div>
-      <div style={{ paddingTop: "5rem" }}>Timetable of {user?.name}</div>
-      <Workday />
+      <Header />
+      <div>Settings of {user?.name}</div>
     </div>
   )
 }
 
-export default Timetable
+export default Settings

@@ -1,0 +1,30 @@
+.Header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center; /* y-Achse */
+  justify-content: space-between;
+}
+
+.profilPicture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.arbeitsGruppe {
+  text-decoration-line: underline;
+  text-decoration-color: white;
+}
+
+.HeaderButton {
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  font-size: 20px;
+  font: bold;
+  background-color: #cccccc;
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@ import { Session } from "next-auth"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import Header from "@/components/Header"
+import DashboardComponent from "@/components/Dashboard/Dashboard"
 
 const Dashboard = () => {
   const [session, setSession] = useState<Session | null>()
@@ -22,20 +22,7 @@ const Dashboard = () => {
     handleSession()
   }, [router])
 
-  //console.log(session)
-
-  return (
-    <div>
-      {session ? (
-        <>
-          <Header session={session} />
-          <div>Dashboard</div>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
-  )
+  return <DashboardComponent />
 }
 
 export default Dashboard
