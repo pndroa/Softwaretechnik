@@ -3,7 +3,10 @@ import Dashboard from "../components/Dashboard/Dashboard"
 
 const page = () => {
   return (
-    <Dashboard />
+    <div>
+      <Dashboard />
+      <div>hallo</div>
+    </div>
   )
 }
 
