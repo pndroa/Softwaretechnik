@@ -1,14 +1,12 @@
-import Login from "@/components/Login"
-import DashBoard from "@/components/DashBoard"
-import Link from "next/link"
-import { CardMedia } from "@mui/material"
-
-export default function Home() {
-  const name = "jey"
-
-  return (
-    <div>
-      <Link href="/settings">Employee table</Link>
+export default function Page() {
+  return(
+    /* Header */
+    <div id="header">
+        <img src="./eldenring.png" alt="profilePicture" />
+        <div>
+            <h1>Bryson Mills</h1> 
+            <p id="arbeitsGruppe">Employee</p> 
+        </div>
     </div>
   )
 }

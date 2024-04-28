@@ -1,0 +1,33 @@
+.socialsHeader{
+    background-color: #f4f4f4;
+    font-size: larger;
+    font-weight: bolder;
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+    width: 50vw;
+    text-align: center;
+}
+
+.socialsContainer {
+    background-color: #f4f4f4;
+    display: flex; 
+
+    width: 50vw;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+
+.socialsItem {
+    display:flex;
+    text-align: center;
+    align-items: center;
+} 
+
+.socialsPictures{
+    width: 80px;
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
