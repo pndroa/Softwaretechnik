@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import { UserProps } from "@/module/databaseConfig"
-import MessagesComponent from "@/components/MessagesComponent"
+import MessagesComponent from "@/components/Messages/MessagesComponent"
 import Header from "@/components/Header/Header"
 
 const Messages = () => {

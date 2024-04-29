@@ -18,7 +18,7 @@
   text-decoration-style: dashed;
 
   position: absolute;
-  top: 22%;
+  top: 27%;
   left: 77%;
 }
 
@@ -40,8 +40,8 @@
 
 .newsIcon1 {
   position: absolute;
-  top: 52.5%;
-  left: 86.5%;
+  top: 53.5%;
+  left: 88%;
 }
 
 .textArea2 {
@@ -63,7 +63,7 @@
 .newsIcon2 {
   position: absolute;
   top: 70%;
-  left: 53.1%;
+  left: 52.1%;
 }
 
 .featuresTop {
@@ -74,6 +74,7 @@
   flex-direction: row; /* standardmäßig */
   justify-content: space-evenly;
 }
+
 .featuresTopItems {
   background-color: #ccc;
   display: flex;
