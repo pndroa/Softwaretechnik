@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { UserProps } from "@/module/databaseConfig"
 import Header from "@/components/Header/Header"
-import Workday from "@/components/TimetableComponent"
+import Workday from "@/components/Timetable/TimetableComponent"
 
 const Timetable = () => {
   const [session, setSession] = useState<Session>()

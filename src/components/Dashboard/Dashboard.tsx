@@ -1,10 +1,26 @@
+"use client"
 import styles from "./Dashboard.module.css"
 import Image from "next/image"
 import stcIcon from "@/pictures/stcIcon.png"
 import newsIcon from "@/pictures/newsIcon.png"
 import Link from "next/link"
+import { Session } from "next-auth"
+import { getSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const Dashboard = () => {
+  const [session, setSession] = useState<Session | null | undefined>()
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleSession = async () => {
+      const session = await getSession()
+      setSession(session)
+    }
+    handleSession()
+  }, [])
+
   return (
     <div className={styles.container}>
       {/* NEWSLETTER */}
@@ -86,7 +102,11 @@ const Dashboard = () => {
             href="/dashboard/timetable"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <strong style={{ fontSize: "22px" }}>Timetable</strong>
+            {session?.user?.name === "Bryson Mills" ? (
+              <strong style={{ fontSize: "22px" }}>Employee Timetable</strong>
+            ) : (
+              <strong style={{ fontSize: "22px" }}>Timetable</strong>
+            )}
           </Link>
         </div>
       </div>

@@ -6,6 +6,8 @@ export class EmployeeTimetable {
   hoursTarget: number
   plusOrMinusHours: number
   break: number
+  absence: boolean
+  comment: string
 
   constructor(
     workDate: Date,
@@ -14,7 +16,9 @@ export class EmployeeTimetable {
     endHours: string,
     hoursTarget: number,
     plusOrMinusHours: number,
-    breakTime: number // Hier fügst du einen weiteren Parameter für die Pause hinzu
+    breakTime: number,
+    absence: boolean,
+    comment: string
   ) {
     const day = workDate.getDate()
     const month = workDate.getMonth() + 1
@@ -28,6 +32,8 @@ export class EmployeeTimetable {
     this.hoursTarget = hoursTarget
     this.plusOrMinusHours = plusOrMinusHours
     this.break = breakTime // Setze die Pause entsprechend dem Parameter
+    this.absence = absence
+    this.comment = comment
   }
 
   calculateWorkHours(): number {
