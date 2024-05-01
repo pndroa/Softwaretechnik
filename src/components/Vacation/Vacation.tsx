@@ -1,21 +1,54 @@
 "use client"
-import React, { useState } from "react"
+import { Session } from "next-auth"
+import { getSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import React, { useEffect, useState } from "react"
+import { Employee } from "@/module/employee"
 
 const Vacation = () => {
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
-  const [duration, setDuration] = useState("")
-  const [remainingDays, setRemainingDays] = useState("")
-  const [comment, setComment] = useState("")
+  const [startDate, setStartDate] = useState<string>()
+  const [endDate, setEndDate] = useState<string>()
+  const [duration, setDuration] = useState<string>()
+  const [vacationRequestStatus, setVacationRequestStatus] = useState()
+  const [vacationRequest, setVacationRequest] = useState()
+  const [session, setSession] = useState<Session | null>()
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const handleSession = async () => {
+      const session = await getSession()
+      setSession(session)
+    }
+    handleSession()
+  }, [])
+
+  const employee = new Employee(session?.user?.name as string)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     console.log("Form submitted:", {
       startDate,
       endDate,
-      duration,
-      remainingDays,
-      comment,
+      duration: Number(duration),
+      vacationRequestStatus: 1,
+      vacationRequest: false,
+    })
+
+    employee.setVacation(
+      startDate as string,
+      endDate as string,
+      Number(duration) as number
+    )
+
+    const vacation = employee.getVacation()
+
+    await fetch(`http://localhost:3000/api/employee/${session?.user?.email}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(vacation),
     })
   }
 
@@ -58,25 +91,6 @@ const Vacation = () => {
                   type="number"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Remaining Days:</td>
-              <td>
-                <input
-                  type="number"
-                  value={remainingDays}
-                  onChange={(e) => setRemainingDays(e.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Comment:</td>
-              <td>
-                <textarea
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
                 />
               </td>
             </tr>
