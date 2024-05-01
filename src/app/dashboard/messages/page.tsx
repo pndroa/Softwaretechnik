@@ -3,13 +3,12 @@ import { Session } from "next-auth"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
-import { UserProps } from "@/module/databaseConfig"
 import MessagesComponent from "@/components/Messages/MessagesComponent"
 import Header from "@/components/Header/Header"
 
 const Messages = () => {
   const [session, setSession] = useState<Session>()
-  const [user, setUser] = useState<UserProps>()
+  const [user, setUser] = useState()
   const router = useRouter()
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const Messages = () => {
           gap: "1rem",
         }}
       >
-        Messages of {user?.name}
+        Messages of {session?.user?.name}
         <MessagesComponent />
       </div>
     </>

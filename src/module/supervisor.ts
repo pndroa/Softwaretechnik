@@ -7,5 +7,6 @@ export class Supervisor extends Employee {
     if (super.getvacationRequestStatus() === 1) {
       super.setvacationRequestStatus(vacationRequestStatus)
     }
+    return super.getvacationRequestStatus()
   }
 }
