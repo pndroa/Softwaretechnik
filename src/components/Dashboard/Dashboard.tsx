@@ -98,16 +98,21 @@ const Dashboard = () => {
           </Link>
         </div>
         <div className={styles.featuresTopItems}>
-          <Link
-            href="/dashboard/timetable"
-            style={{ color: "black", textDecoration: "none" }}
-          >
-            {session?.user?.name === "Bryson Mills" ? (
+          {session?.user?.name === "Bryson Mills" ? (
+            <Link
+              href="/dashboard/employeeTimetable"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <strong style={{ fontSize: "22px" }}>Employee Timetable</strong>
-            ) : (
+            </Link>
+          ) : (
+            <Link
+              href="/dashboard/timetable"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <strong style={{ fontSize: "22px" }}>Timetable</strong>
-            )}
-          </Link>
+            </Link>
+          )}
         </div>
       </div>
 

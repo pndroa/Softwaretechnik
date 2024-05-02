@@ -16,8 +16,6 @@ export default function Home() {
     handleSession()
   }, [])
 
-  console.log(session)
-
   if (session?.user) {
     router.push("/dashboard")
   } else {

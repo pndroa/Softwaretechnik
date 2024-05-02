@@ -1,49 +1,60 @@
-export class EmployeeTimetable {
-  workDate: string
-  weekday: string
-  beginHours: string
-  endHours: string
-  hoursTarget: number
-  plusOrMinusHours: number
-  break: number
-  absence: boolean
-  comment: string
+export class Employee {
+  name: string
+  vacationStart: string
+  vacationEnd: string
+  vacationDays: number
+  vacationRequest: boolean
+  vacationRequestStatus: number //0 = noRequest, 1 = requested, 2 = requestConfirmed, 3 = requestRejected
+  vacationStatus: boolean
+  message: string
 
-  constructor(
-    workDate: Date,
-    weekday: string,
-    beginHours: string,
-    endHours: string,
-    hoursTarget: number,
-    plusOrMinusHours: number,
-    breakTime: number,
-    absence: boolean,
-    comment: string
-  ) {
-    const day = workDate.getDate()
-    const month = workDate.getMonth() + 1
-    const year = workDate.getFullYear()
-    this.workDate = `${day < 10 ? "0" : ""}${day}.${
-      month < 10 ? "0" : ""
-    }${month}.${year}`
-    this.weekday = weekday
-    this.beginHours = beginHours
-    this.endHours = endHours
-    this.hoursTarget = hoursTarget
-    this.plusOrMinusHours = plusOrMinusHours
-    this.break = breakTime // Setze die Pause entsprechend dem Parameter
-    this.absence = absence
-    this.comment = comment
+  constructor(name: string) {
+    this.name = name
+    this.vacationStart = ""
+    this.vacationEnd = ""
+    this.vacationDays = 30
+    this.vacationRequest = false
+    this.vacationRequestStatus = 0
+    this.vacationStatus = false
+    this.message = ""
   }
 
-  calculateWorkHours(): number {
-    const beginTime = new Date(this.workDate + " " + this.beginHours)
-    const endTime = new Date(this.workDate + " " + this.endHours)
-    const diffMilliseconds = endTime.getTime() - beginTime.getTime()
-    const diffHours = diffMilliseconds / (1000 * 60 * 60) // Stunden
-    const realWorkHours = diffHours - this.break
-    this.hoursTarget = realWorkHours
-    this.plusOrMinusHours = realWorkHours - 8
-    return diffHours
+  getvacationRequestStatus(): any {
+    return this.vacationRequestStatus
+  }
+
+  setvacationRequestStatus(vacationRequestStatus: number) {
+    this.vacationRequestStatus = vacationRequestStatus
+  }
+
+  setVacation(
+    vacationStart: string,
+    vacationEnd: string,
+    vacationDays: number
+  ): void {
+    if (this.vacationRequest === false && this.vacationDays > 0) {
+      this.vacationStart = vacationStart
+      this.vacationEnd = vacationEnd
+      this.vacationRequest = true
+      this.vacationRequestStatus = 1
+      this.vacationDays -= vacationDays
+    } else {
+      this.message = "Keine Urlaubsanträge oder Antrag auf Urlaub nicht möglich"
+    }
+  }
+
+  getVacation(): any {
+    return {
+      vacationStart: this.vacationStart,
+      vacationEnd: this.vacationEnd,
+      vacationDays: this.vacationDays,
+      vacationRequest: this.vacationRequest,
+      vacationRequestStatus: this.vacationRequestStatus,
+      vacationStatus: this.vacationStatus,
+    }
+  }
+
+  setVacationStatus(vacationStatus: boolean): void {
+    this.vacationStatus = vacationStatus
   }
 }

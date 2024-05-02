@@ -20,3 +20,47 @@ export const GET = async (
     await prisma.$disconnect()
   }
 }
+export const PATCH = async (
+  request: Request,
+  { params }: { params: { email: string } }
+) => {
+  try {
+    await connectToDatabase()
+
+    const body = await request.json()
+
+    const {
+      vacationStart,
+      vacationEnd,
+      vacationDays,
+      vacationRequestStatus,
+      vacationRequest,
+    } = body
+
+    // Benutzer aktualisieren
+    const updatedUser = await prisma.user.update({
+      where: {
+        email: params.email,
+      },
+      data: {
+        vacationStart,
+        vacationEnd,
+        vacationDays,
+        vacationRequestStatus,
+        vacationRequest,
+      },
+    })
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: params.email,
+      },
+    })
+
+    return NextResponse.json(user)
+  } catch (error: any) {
+    return NextResponse.json(error)
+  } finally {
+    await prisma.$disconnect()
+  }
+}

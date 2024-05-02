@@ -3,13 +3,11 @@ import { Session } from "next-auth"
 import { getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { UserProps } from "@/module/databaseConfig"
-import Header from "@/components/Header/Header"
-import Workday from "@/components/Timetable/TimetableComponent"
+import TimetableComponent from "@/components/Timetable/TimetableComponent"
 
 const Timetable = () => {
   const [session, setSession] = useState<Session>()
-  const [user, setUser] = useState<UserProps>()
+  const [user, setUser] = useState()
   const router = useRouter()
 
   useEffect(() => {
@@ -33,8 +31,7 @@ const Timetable = () => {
 
   return (
     <div>
-      <div style={{ paddingTop: "5rem" }}>Timetable of {user?.name}</div>
-      <Workday />
+      <TimetableComponent></TimetableComponent>
     </div>
   )
 }
